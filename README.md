@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Jun9</h1>
-<h3 align="center">Full Stack Dev: SA, DevOps, FE, BE</h3>
+<h3 align="center">Full Stack Dev: SA, DevOps, FE, BE, DB</h3>
 
 <h3 align="center">Connect with me:</h3>
 <p align="center">
