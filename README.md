@@ -1,5 +1,10 @@
 <h1 align="center">Hi 👋, I'm Jun9</h1>
-<h3 align="center">Full Stack Dev: SA, DevOps, FE, BE, DB</h3>
+<h3 align="center">Full Stack Dev: SA, DevOps, FE, BE - Let's Build Something Epic 🚀</h3>
+<p align="center">I'm passionate about building scalable applications, automating workflows, and making complex problems simple with clean, efficient code. Let's create something impactful!</p>
+
+<p align="center">
+  <img align="center" src="https://github-readme-stats.vercel.app/api?username=gianduong&show_icons=true&count_private=true&hide=prs&hide_title=true&hide_border=true&theme=dark" alt="gianduong" />
+</p>
 
 <h3 align="center">Connect with me:</h3>
 <p align="center">
