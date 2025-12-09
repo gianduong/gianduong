@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Jun9</h1>
-<h3 align="center">🚀 Product Manager | Database Engineer | Full Stack Dev | DevOps & SysAdmin</h3>
+<h3 align="center">🚀 Product Manager | DevOps & SysAdmin | Database Engineer | Full Stack Developer</h3>
 
 <p align="center">
   <em>"Navigating the full spectrum of the Web Development Lifecycle."</em>
@@ -93,5 +93,8 @@
 </div>
 <br/>
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=jun9&theme=tokyonight&hide_border=true" alt="Streak Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=gianduong&theme=tokyonight&hide_border=true" alt="Streak Stats" />
+</div>
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=jun9&bg_color=1a1b27&color=38b2ac&line=38b2ac&point=FFFFFF&area=true&hide_border=true&hide_title=true" alt="Activity Graph" width="100%" />
 </div>
