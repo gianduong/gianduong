@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, I'm Jun9</h1>
+<h1 align="center">Hi 👋, I'm Jun</h1>
 <h3 align="center">🚀 Product Manager | DevOps & SysAdmin | Database Engineer | Full Stack Developer</h3>
 
 <p align="center">
