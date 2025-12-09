@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Jun9</h1>
-<h3 align="center">🚀 PM | Product Manager & Database Engineer | Full Stack Dev</h3>
+<h3 align="center">🚀 Product Manager | Database Engineer | Full Stack Dev | DevOps & SysAdmin</h3>
 
 <p align="center">
   <em>"Navigating the full spectrum of the Web Development Lifecycle."</em>
@@ -88,8 +88,8 @@
 ### 📈 GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=jun9&show_icons=true&locale=en&layout=compact&theme=tokyonight" alt="Top Langs" height="180" />
-  <img src="https://github-readme-stats.vercel.app/api?username=jun9&show_icons=true&count_private=true&hide=prs&hide_title=true&hide_border=true&theme=tokyonight" alt="GitHub Stats" height="180" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=gianduong&show_icons=true&locale=en&layout=compact&theme=tokyonight" alt="Top Langs" height="180" />
+  <img src="https://github-readme-stats.vercel.app/api?username=gianduong&show_icons=true&count_private=true&hide=prs&hide_title=true&hide_border=true&theme=tokyonight" alt="GitHub Stats" height="180" />
 </div>
 <br/>
 <div align="center">
