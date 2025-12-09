@@ -12,7 +12,7 @@
   Currently, I am an **App Leader (2+ years)**, backed by a strong foundation of **4 years as a Developer** and **2 years as a Solution Architect**.
   
   🔹 **Big Data Expert:** Proven ability to process and optimize databases with **billions of records**.  
-  🔹 **Versatile Leader:** From high-level architecture to hands-on coding, and even stepping in as a **Tester** whenever the team needs support.  
+  🔹 **Versatile Leader:** Wearing multiple hats—from defining product requirements as a **PO/BA** to hands-on coding, and even stepping in as a **Tester** to ensure delivery.
   
   <em>Passionate about building scalable applications, automating workflows, and making complex problems simple.</em>
 
@@ -54,6 +54,7 @@
 <p>
   <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" />
   <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white" />
   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" />
   <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
   <img src="https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=elasticsearch&logoColor=white" />
@@ -87,10 +88,10 @@
 ### 📈 GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=gianduong&show_icons=true&locale=en&layout=compact&theme=tokyonight" alt="Top Langs" height="180" />
-  <img src="https://github-readme-stats.vercel.app/api?username=gianduong&show_icons=true&count_private=true&hide=prs&hide_title=true&hide_border=true&theme=tokyonight" alt="GitHub Stats" height="180" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=jun9&show_icons=true&locale=en&layout=compact&theme=tokyonight" alt="Top Langs" height="180" />
+  <img src="https://github-readme-stats.vercel.app/api?username=jun9&show_icons=true&count_private=true&hide=prs&hide_title=true&hide_border=true&theme=tokyonight" alt="GitHub Stats" height="180" />
 </div>
 <br/>
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=gianduong&theme=tokyonight&hide_border=true" alt="Streak Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=jun9&theme=tokyonight&hide_border=true" alt="Streak Stats" />
 </div>
