@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-tokyo-night-bg text-tokyo-night-fg font-sans;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-tokyo-night-cyan to-tokyo-night-blue bg-clip-text text-transparent;
+  }
+}
+
