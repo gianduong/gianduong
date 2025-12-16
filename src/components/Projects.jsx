@@ -1,95 +1,107 @@
 import { motion } from 'framer-motion'
-import { FaCode, FaRocket, FaDatabase, FaChartLine } from 'react-icons/fa'
+import { FaRocket, FaFacebook, FaTiktok, FaGoogle, FaCalendarAlt, FaGlobe } from 'react-icons/fa'
 
 const Projects = () => {
   const projects = [
     {
-      title: 'Hệ thống Tracking e-Commerce',
-      role: 'Solution Architect & Lead Dev',
-      challenge: 'Xử lý dữ liệu tracking của hàng triệu user/ngày, database phình to nhanh chóng.',
-      solution: 'Sử dụng Kafka để stream dữ liệu, Vitess để sharding MySQL, ElasticSearch để search nhanh.',
-      result: 'Hệ thống chạy ổn định với hàng tỷ bản ghi, giảm độ trễ query xuống dưới 100ms.',
-      tech: ['Kafka', 'Vitess', 'MySQL', 'Java', 'Elasticsearch'],
-      color: 'cyan',
-      icon: <FaDatabase className="text-2xl" />,
-      year: '2022-2023'
-    },
-    {
-      title: 'Shopify App Platform',
-      role: 'App Leader & Product Manager',
-      challenge: 'Xây dựng nền tảng ứng dụng Shopify có khả năng mở rộng và dễ bảo trì.',
-      solution: 'Kiến trúc microservices với Node.js, React, và Shopify Polaris. Tự động hóa CI/CD với GitLab.',
-      result: 'Nền tảng hỗ trợ hàng nghìn merchants, thời gian deploy giảm 70%.',
-      tech: ['Node.js', 'React', 'Shopify Polaris', 'Docker', 'Kubernetes', 'GitLab CI/CD'],
+      title: 'Omega Facebook Pixel Ad Report',
+      role: 'Developer',
+      customer: 'Shopify merchants',
+      description: 'Rise above Facebook Signal Loss with Meta Pixel, Advanced Conversion API & Facebook Product Feed',
+      challenge: 'Xây dựng ứng dụng Shopify để tracking Facebook ads với Meta Pixel và Conversion API, xử lý hàng triệu events/ngày.',
+      solution: 'React JS frontend, Laravel backend, MongoDB database, Redux state management, Webpack bundler. Tạo web pixel extensions và checkout UI extensions.',
+      result: 'Ứng dụng hỗ trợ hàng nghìn Shopify merchants, tối ưu SEO và performance, queue optimization.',
+      tech: ['React JS', 'PHP', 'Laravel', 'Node.js', 'MongoDB', 'Redux', 'TypeScript', 'React Query', 'Webpack'],
       color: 'blue',
-      icon: <FaRocket className="text-2xl" />,
-      year: '2023-2024'
+      icon: <FaFacebook className="text-2xl" />,
+      year: '2021 - now',
+      link: 'https://apps.shopify.com/facebook-multi-pixels',
+      teamSize: '4-14'
     },
     {
-      title: 'Big Data Analytics System',
-      role: 'Solution Architect',
-      challenge: 'Xử lý và phân tích hàng tỷ bản ghi dữ liệu trong thời gian thực.',
-      solution: 'Pipeline xử lý dữ liệu với Kafka, lưu trữ phân tán với MongoDB, cache với Redis.',
-      result: 'Hệ thống xử lý được 10+ tỷ events/ngày với độ trễ < 1s.',
-      tech: ['Kafka', 'MongoDB', 'Redis', 'Elasticsearch', 'Go'],
+      title: 'Twoowls - Smart Multi Pixels',
+      role: 'PO / BA / DevOps / FE / BE',
+      customer: 'Wix merchants',
+      description: 'Track ads: Facebook, Tiktok, Snapchat, X & more',
+      challenge: 'Xây dựng ứng dụng Wix để tracking đa nền tảng (Facebook, TikTok, Snapchat, X) cho merchants.',
+      solution: 'Full-stack development với React JS, PHP Laravel, Node.js, MongoDB. Quản lý toàn bộ từ PO/BA đến DevOps.',
+      result: 'Ứng dụng hoàn chỉnh hỗ trợ tracking đa nền tảng, tự quản lý toàn bộ quy trình phát triển.',
+      tech: ['React JS', 'PHP', 'Laravel', 'Node.js', 'MongoDB', 'Redux', 'Webpack'],
       color: 'purple',
-      icon: <FaChartLine className="text-2xl" />,
-      year: '2021-2022'
-    },
-    {
-      title: 'Microservices Payment Gateway',
-      role: 'Full Stack Developer & Solution Architect',
-      challenge: 'Xây dựng hệ thống thanh toán có khả năng xử lý hàng triệu giao dịch/ngày với độ tin cậy cao.',
-      solution: 'Kiến trúc microservices với Spring Boot, message queue với RabbitMQ, database sharding với PostgreSQL.',
-      result: 'Hệ thống xử lý 5M+ transactions/ngày, uptime 99.9%, thời gian phản hồi < 200ms.',
-      tech: ['Java', 'Spring Boot', 'PostgreSQL', 'RabbitMQ', 'Docker', 'Kubernetes'],
-      color: 'green',
-      icon: <FaCode className="text-2xl" />,
-      year: '2020-2021'
-    },
-    {
-      title: 'Real-time Dashboard & Monitoring',
-      role: 'Full Stack Developer',
-      challenge: 'Xây dựng dashboard real-time để giám sát hệ thống với hàng nghìn metrics.',
-      solution: 'WebSocket cho real-time updates, InfluxDB cho time-series data, React với D3.js cho visualization.',
-      result: 'Dashboard hiển thị real-time với độ trễ < 500ms, hỗ trợ 10K+ concurrent users.',
-      tech: ['React', 'Node.js', 'WebSocket', 'InfluxDB', 'D3.js', 'TypeScript'],
-      color: 'yellow',
-      icon: <FaChartLine className="text-2xl" />,
-      year: '2019-2020'
-    },
-    {
-      title: 'E-Commerce Platform (Laravel)',
-      role: 'Full Stack Developer',
-      challenge: 'Xây dựng nền tảng e-commerce với khả năng mở rộng và tối ưu performance.',
-      solution: 'Laravel backend, Vue.js frontend, Redis caching, MySQL với query optimization, CDN integration.',
-      result: 'Platform hỗ trợ 100K+ products, load time < 2s, conversion rate tăng 30%.',
-      tech: ['PHP', 'Laravel', 'Vue.js', 'MySQL', 'Redis', 'Nginx'],
-      color: 'red',
       icon: <FaRocket className="text-2xl" />,
-      year: '2018-2019'
+      year: '2024 - now',
+      link: 'https://www.wix.com/app-market/web-solution/omega-multi-facebook-pixels',
+      teamSize: '1'
     },
     {
-      title: 'API Gateway & Service Mesh',
-      role: 'Solution Architect',
-      challenge: 'Tạo API Gateway tập trung để quản lý và bảo mật hàng trăm microservices.',
-      solution: 'Kong API Gateway, service discovery với Consul, rate limiting, authentication với JWT.',
-      result: 'Giảm 80% thời gian tích hợp services mới, tăng security với centralized auth.',
-      tech: ['Kong', 'Consul', 'Docker', 'Kubernetes', 'Nginx', 'JWT'],
+      title: 'Omega Pixel - TikTok Pixels',
+      role: 'Developer',
+      customer: 'Shopify merchants',
+      description: 'TikTok Pixel tracking và conversion tracking cho Shopify stores',
+      challenge: 'Tích hợp TikTok Pixel vào Shopify, xử lý tracking events và conversion data.',
+      solution: 'React JS frontend, Laravel backend, MongoDB. Tạo web pixel extensions, checkout UI extensions. Tối ưu queue và performance.',
+      result: 'Ứng dụng tracking TikTok ads hiệu quả, hỗ trợ hàng nghìn merchants, tối ưu SEO và performance.',
+      tech: ['React JS', 'PHP', 'Laravel', 'Node.js', 'MongoDB', 'Redux', 'Webpack'],
       color: 'cyan',
-      icon: <FaDatabase className="text-2xl" />,
-      year: '2022'
+      icon: <FaTiktok className="text-2xl" />,
+      year: '2021 - now',
+      teamSize: '4-14'
     },
     {
-      title: 'CI/CD Pipeline Automation',
-      role: 'DevOps Engineer & Developer',
-      challenge: 'Tự động hóa quy trình build, test, và deploy cho nhiều projects đồng thời.',
-      solution: 'Jenkins pipeline, Docker containerization, automated testing với Jest/PHPUnit, GitLab CI/CD.',
-      result: 'Giảm thời gian deploy từ 2 giờ xuống 15 phút, tự động hóa 90% quy trình.',
-      tech: ['Jenkins', 'Docker', 'GitLab CI/CD', 'Kubernetes', 'Bash', 'Python'],
-      color: 'blue',
-      icon: <FaCode className="text-2xl" />,
-      year: '2021'
+      title: 'Omega Google Shopping Feed',
+      role: 'Developer',
+      customer: 'Shopify merchants',
+      description: 'Optimize your Google Shopping by syncing data-rich product feeds to Google Merchant hourly',
+      challenge: 'Đồng bộ product feeds từ Shopify lên Google Merchant Center với tần suất cao, xử lý hàng nghìn products.',
+      solution: 'React JS frontend, Laravel backend, Redux state management. Tối ưu code và làm việc với outsource team.',
+      result: 'Feed sync hourly thành công, tối ưu Google Shopping performance, hỗ trợ merchants tăng sales.',
+      tech: ['React JS', 'PHP', 'Laravel', 'Redux'],
+      color: 'green',
+      icon: <FaGoogle className="text-2xl" />,
+      year: '2021 - now',
+      teamSize: '4-8'
+    },
+    {
+      title: 'DingDoong: Local Delivery Date',
+      role: 'Developer',
+      customer: 'Shopify merchants',
+      description: 'Plan your delivery schedule ahead with date picker for shipping, local delivery and store pickup',
+      challenge: 'Xây dựng ứng dụng Shopify để quản lý lịch giao hàng với date picker cho shipping, local delivery và store pickup.',
+      solution: 'Setup source code frontend, code frontend và backend với React JS, Laravel, Redux.',
+      result: 'Ứng dụng giúp merchants quản lý delivery schedule hiệu quả, cải thiện customer experience.',
+      tech: ['React JS', 'PHP', 'Laravel', 'Redux'],
+      color: 'yellow',
+      icon: <FaCalendarAlt className="text-2xl" />,
+      year: '2021 - 2022',
+      teamSize: '4-14'
+    },
+    {
+      title: 'Website Twoowls',
+      role: 'Developer',
+      customer: 'Shopify merchants',
+      description: 'Twoowls Brand Marketing Website',
+      challenge: 'Xây dựng website marketing cho thương hiệu Twoowls với UI/UX hiện đại.',
+      solution: 'Frontend development với React JS, TypeScript, Bootstrap 5. Tập trung vào responsive design và performance.',
+      result: 'Website marketing chuyên nghiệp, responsive trên mọi thiết bị, load time tối ưu.',
+      tech: ['React JS', 'TypeScript', 'Bootstrap 5'],
+      color: 'red',
+      icon: <FaGlobe className="text-2xl" />,
+      year: '2021',
+      teamSize: '4-14'
+    },
+    {
+      title: 'Website Dingdoong',
+      role: 'Developer',
+      customer: 'Shopify merchants',
+      description: 'Dingdoong Brand Marketing Website',
+      challenge: 'Xây dựng website marketing cho thương hiệu Dingdoong.',
+      solution: 'Frontend development với React JS, TypeScript, Bootstrap 5.',
+      result: 'Website marketing hoàn chỉnh, tăng brand awareness.',
+      tech: ['React JS', 'TypeScript', 'Bootstrap 5'],
+      color: 'cyan',
+      icon: <FaGlobe className="text-2xl" />,
+      year: '2021',
+      teamSize: '4-14'
     }
   ]
 
@@ -149,7 +161,7 @@ const Projects = () => {
             Dự Án Đã Làm
           </h2>
           <p className="text-lg text-tokyo-night-fg/70 max-w-2xl mx-auto">
-            Các dự án tiêu biểu trong suốt hành trình phát triển sự nghiệp
+            Các dự án thực tế trong suốt hành trình phát triển sự nghiệp
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-tokyo-night-cyan to-tokyo-night-blue mx-auto mt-4"></div>
         </motion.div>
@@ -172,17 +184,36 @@ const Projects = () => {
                   <div className={`p-2 ${colors.bg} rounded-lg ${colors.text}`}>
                     {project.icon}
                   </div>
-                  <span className="text-xs text-tokyo-night-fg/50 font-medium">
-                    {project.year}
-                  </span>
+                  <div className="text-right">
+                    <span className="text-xs text-tokyo-night-fg/50 font-medium block">
+                      {project.year}
+                    </span>
+                    {project.teamSize && (
+                      <span className="text-[10px] text-tokyo-night-fg/40">
+                        Team: {project.teamSize}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 <h3 className={`text-xl font-bold mb-2 ${colors.text}`}>
                   {project.title}
                 </h3>
-                <p className="text-sm text-tokyo-night-fg/60 mb-4">
+                <p className="text-sm text-tokyo-night-fg/60 mb-1">
                   {project.role}
                 </p>
+                <p className="text-xs text-tokyo-night-fg/50 mb-3">
+                  {project.customer}
+                </p>
+
+                {/* Description */}
+                {project.description && (
+                  <div className="mb-3">
+                    <p className="text-xs text-tokyo-night-fg/70 leading-relaxed italic">
+                      {project.description}
+                    </p>
+                  </div>
+                )}
 
                 {/* Challenge */}
                 <div className="mb-3">
@@ -214,6 +245,20 @@ const Projects = () => {
                   </p>
                 </div>
 
+                {/* Link */}
+                {project.link && (
+                  <div className="mb-3">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-tokyo-night-cyan hover:text-tokyo-night-blue underline flex items-center gap-1"
+                    >
+                      Xem ứng dụng →
+                    </a>
+                  </div>
+                )}
+
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-tokyo-night-border">
                   {project.tech.map((tech, i) => (
@@ -239,20 +284,20 @@ const Projects = () => {
           className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           <div className="bg-tokyo-night-bg-alt/50 rounded-lg p-4 text-center border border-tokyo-night-border">
-            <div className="text-3xl font-bold text-tokyo-night-cyan mb-1">{projects.length}+</div>
+            <div className="text-3xl font-bold text-tokyo-night-cyan mb-1">{projects.length}</div>
             <div className="text-sm text-tokyo-night-fg/60">Dự án</div>
           </div>
           <div className="bg-tokyo-night-bg-alt/50 rounded-lg p-4 text-center border border-tokyo-night-border">
-            <div className="text-3xl font-bold text-tokyo-night-blue mb-1">8+</div>
+            <div className="text-3xl font-bold text-tokyo-night-blue mb-1">4+</div>
             <div className="text-sm text-tokyo-night-fg/60">Năm kinh nghiệm</div>
           </div>
           <div className="bg-tokyo-night-bg-alt/50 rounded-lg p-4 text-center border border-tokyo-night-border">
-            <div className="text-3xl font-bold text-tokyo-night-purple mb-1">10B+</div>
-            <div className="text-sm text-tokyo-night-fg/60">Records xử lý</div>
+            <div className="text-3xl font-bold text-tokyo-night-purple mb-1">Shopify</div>
+            <div className="text-sm text-tokyo-night-fg/60">Platform chính</div>
           </div>
           <div className="bg-tokyo-night-bg-alt/50 rounded-lg p-4 text-center border border-tokyo-night-border">
-            <div className="text-3xl font-bold text-tokyo-night-green mb-1">99.9%</div>
-            <div className="text-sm text-tokyo-night-fg/60">Uptime</div>
+            <div className="text-3xl font-bold text-tokyo-night-green mb-1">Full</div>
+            <div className="text-sm text-tokyo-night-fg/60">Stack Dev</div>
           </div>
         </motion.div>
       </div>
