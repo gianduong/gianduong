@@ -1,48 +1,76 @@
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 const TechStack = () => {
   const categories = [
     {
-      title: 'Backend & Languages',
-      items: ['Java (Spring Boot)', 'PHP (Laravel)', 'Node.js', 'C#', 'Go']
+      title: "Backend & Languages",
+      items: [
+        "Java (Spring Boot)",
+        "PHP (Laravel)",
+        "Node.js",
+        "JavaScript",
+        "C#",
+      ],
     },
     {
-      title: 'Frontend',
-      items: ['React', 'Next.js', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Shopify Polaris']
+      title: "Frontend",
+      items: [
+        "React",
+        "Next.js",
+        "Vue.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Bootstrap",
+        "Shopify Polaris",
+      ],
     },
     {
-      title: 'Database & Big Data',
-      core: ['MySQL', 'PostgreSQL', 'Oracle', 'MongoDB'],
-      performance: ['Vitess', 'Elasticsearch', 'Redis', 'Apache Kafka', 'Memcached']
+      title: "Database & Big Data",
+      core: ["MySQL", "PostgreSQL", "Oracle", "MongoDB"],
+      performance: [
+        "Vitess",
+        "Elasticsearch",
+        "Redis",
+        "Apache Kafka",
+        "Memcached",
+      ],
     },
     {
-      title: 'DevOps & Cloud',
-      items: ['AWS', 'Docker', 'Kubernetes (K8s)', 'Cloudflare', 'Nginx', 'Jenkins', 'GitLab CI/CD']
+      title: "DevOps & Cloud",
+      items: [
+        "AWS",
+        "Docker",
+        "Kubernetes (K8s)",
+        "Cloudflare",
+        "Nginx",
+        "Jenkins",
+        "GitLab CI/CD",
+      ],
     },
     {
-      title: 'Management Tools',
-      items: ['Jira', 'Lark', 'Slack', 'Kanban Methodology']
-    }
-  ]
+      title: "Management Tools",
+      items: ["Jira", "Lark", "Slack", "Kanban Methodology"],
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.4 }
-    }
-  }
+      transition: { duration: 0.4 },
+    },
+  };
 
   return (
     <section id="tech" className="py-20 px-6">
@@ -92,7 +120,9 @@ const TechStack = () => {
               {category.core && (
                 <div className="space-y-3">
                   <div>
-                    <p className="text-sm font-semibold mb-2 text-tokyo-night-fg-alt">Core:</p>
+                    <p className="text-sm font-semibold mb-2 text-tokyo-night-fg-alt">
+                      Core:
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {category.core.map((item, i) => (
                         <span
@@ -105,7 +135,9 @@ const TechStack = () => {
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold mb-2 text-tokyo-night-fg-alt">Performance & Scaling:</p>
+                    <p className="text-sm font-semibold mb-2 text-tokyo-night-fg-alt">
+                      Performance & Scaling:
+                    </p>
                     <div className="flex flex-wrap gap-2">
                       {category.performance.map((item, i) => (
                         <span
@@ -124,8 +156,7 @@ const TechStack = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default TechStack
-
+export default TechStack;

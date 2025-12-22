@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import ScrollToTop from './components/ScrollToTop'
-import Home from './components/Home'
-import DatabaseOptimization from './components/DatabaseOptimization'
-import SecurityNews from './components/SecurityNews'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./components/Home";
+import DatabaseOptimization from "./components/DatabaseOptimization";
+import SecurityNews from "./components/SecurityNews";
+import Cat from "./components/Cat";
 
 function App() {
   return (
@@ -13,13 +14,16 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/database-optimization" element={<DatabaseOptimization />} />
+          <Route
+            path="/database-optimization"
+            element={<DatabaseOptimization />}
+          />
           <Route path="/security-news" element={<SecurityNews />} />
         </Routes>
+        <Cat />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
-
+export default App;

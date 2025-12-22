@@ -1,16 +1,33 @@
-import { motion } from 'framer-motion'
-import { FaLinkedin, FaGithub, FaFacebook, FaDev, FaEnvelope } from 'react-icons/fa'
+import { motion } from "framer-motion";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaFacebook,
+  FaDev,
+  FaEnvelope,
+} from "react-icons/fa";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: FaLinkedin, url: 'https://linkedin.com/in/nguyengianduong', label: 'LinkedIn' },
-    { icon: FaGithub, url: 'https://github.com/gianduong', label: 'GitHub' },
-    { icon: FaFacebook, url: 'https://fb.com/nguyengianduong', label: 'Facebook' },
-    { icon: FaDev, url: 'https://dev.to/jun', label: 'Dev.to' }
-  ]
+    {
+      icon: FaLinkedin,
+      url: "https://linkedin.com/in/nguyengianduong",
+      label: "LinkedIn",
+    },
+    { icon: FaGithub, url: "https://github.com/gianduong", label: "GitHub" },
+    {
+      icon: FaFacebook,
+      url: "https://fb.com/nguyengianduong",
+      label: "Facebook",
+    },
+    { icon: FaDev, url: "https://dev.to/jun", label: "Dev.to" },
+  ];
 
   return (
-    <footer id="contact" className="py-12 px-6 bg-tokyo-night-bg-alt/50 border-t border-tokyo-night-purple/30">
+    <footer
+      id="contact"
+      className="py-12 px-6 bg-tokyo-night-bg-alt/50 border-t border-tokyo-night-purple/30"
+    >
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
@@ -19,7 +36,13 @@ const Footer = () => {
               Product Manager & Full Stack Developer
             </p>
             <p className="text-sm text-tokyo-night-fg-alt/70">
-              Email: <a href="mailto:your.email@example.com" className="hover:text-tokyo-night-cyan transition-colors">your.email@example.com</a>
+              Email:{" "}
+              <a
+                href="mailto:gduongit9@example.com"
+                className="hover:text-tokyo-night-cyan transition-colors"
+              >
+                gduongit9@example.com
+              </a>
             </p>
             <p className="text-sm text-tokyo-night-fg-alt/70">
               Location: Hà Nội, Việt Nam
@@ -56,8 +79,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
-
+export default Footer;

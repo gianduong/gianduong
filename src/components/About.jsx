@@ -1,43 +1,46 @@
-import { motion } from 'framer-motion'
-import { FaFire, FaHandshake, FaRocket } from 'react-icons/fa'
+import { motion } from "framer-motion";
+import { FaFire, FaHandshake, FaRocket } from "react-icons/fa";
 
 const About = () => {
   const strengths = [
     {
       icon: FaFire,
-      title: 'Big Data Expert',
-      description: 'Có kinh nghiệm thực chiến tối ưu hóa cơ sở dữ liệu với hàng tỷ bản ghi (Billions of records).'
+      title: "Big Data Expert",
+      description:
+        "Có kinh nghiệm thực chiến tối ưu hóa cơ sở dữ liệu với hàng tỷ bản ghi (Billions of records).",
     },
     {
       icon: FaHandshake,
-      title: 'Versatile Leader',
-      description: 'Không ngại "đội nhiều mũ" – từ việc định nghĩa yêu cầu (PO/BA), trực tiếp Coding, đến kiểm thử (Testing) để đảm bảo chất lượng bàn giao.'
+      title: "Versatile Leader",
+      description:
+        'Không ngại "đội nhiều mũ" – từ việc định nghĩa yêu cầu (PO/BA), trực tiếp Coding, đến kiểm thử (Testing) để đảm bảo chất lượng bàn giao.',
     },
     {
       icon: FaRocket,
-      title: 'Product Mindset',
-      description: 'Đam mê xây dựng các ứng dụng có khả năng mở rộng (Scalable) và tự động hóa quy trình (DevOps).'
-    }
-  ]
+      title: "Product Mindset",
+      description:
+        "Đam mê xây dựng các ứng dụng có khả năng mở rộng (Scalable) và tự động hóa quy trình (DevOps).",
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
     <section id="about" className="py-20 px-6">
@@ -66,10 +69,16 @@ const About = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-tokyo-night-fg-alt leading-relaxed mb-8 text-center max-w-4xl mx-auto"
           >
-            Với hơn <span className="text-tokyo-night-cyan font-semibold">8 năm kinh nghiệm</span> trong ngành phần mềm, 
-            tôi đã trải qua hầu hết các vai trò: từ Developer, Tester, Solution Architect đến Product Leader. 
-            Điều này cho phép tôi nhìn nhận sản phẩm từ nhiều góc độ: <span className="text-tokyo-night-blue">kỹ thuật</span>, 
-            <span className="text-tokyo-night-blue"> nghiệp vụ</span> và <span className="text-tokyo-night-blue">người dùng cuối</span>.
+            Với hơn{" "}
+            <span className="text-tokyo-night-cyan font-semibold">
+              4.5 năm kinh nghiệm
+            </span>{" "}
+            trong ngành phần mềm, tôi đã trải qua hầu hết các vai trò: từ
+            Developer, Tester, Solution Architect đến Product Leader. Điều này
+            cho phép tôi nhìn nhận sản phẩm từ nhiều góc độ:{" "}
+            <span className="text-tokyo-night-blue">kỹ thuật</span>,
+            <span className="text-tokyo-night-blue"> nghiệp vụ</span> và{" "}
+            <span className="text-tokyo-night-blue">người dùng cuối</span>.
           </motion.p>
         </motion.div>
 
@@ -99,8 +108,7 @@ const About = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default About
-
+export default About;

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
 import {
   FaDatabase,
   FaRocket,
@@ -21,23 +23,10 @@ const iconMap = {
 };
 
 const DatabaseOptimization = () => {
+  const location = useLocation();
   const [selectedTrick, setSelectedTrick] = useState(null);
   const [trickContent, setTrickContent] = useState(null);
   const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    // Load tricks data from public folder
-    fetch("/database-optimization/index.json")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.categories) {
-          setCategories(data.categories);
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading tricks data:", error);
-      });
-  }, []);
 
   const loadTrickContent = async (trickFile) => {
     try {
@@ -57,6 +46,35 @@ const DatabaseOptimization = () => {
     setSelectedTrick(trick);
     loadTrickContent(trick.file);
   };
+
+  useEffect(() => {
+    // Load tricks data from public folder
+    fetch("/database-optimization/index.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.categories) {
+          setCategories(data.categories);
+
+          // Check if there's a trick ID in the URL hash
+          const hash = location.hash.replace("#", "");
+          if (hash) {
+            // Find the trick by ID
+            for (const category of data.categories) {
+              const trick = category.tricks.find((t) => t.id === hash);
+              if (trick) {
+                setTimeout(() => {
+                  handleTrickClick(trick);
+                }, 300);
+                break;
+              }
+            }
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading tricks data:", error);
+      });
+  }, [location.hash]);
 
   const closeTrickModal = () => {
     setSelectedTrick(null);
@@ -113,6 +131,7 @@ const DatabaseOptimization = () => {
                 {category.tricks.map((trick, trickIndex) => (
                   <motion.div
                     key={trick.id}
+                    data-trick-id={trick.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{
@@ -279,6 +298,7 @@ const DatabaseOptimization = () => {
           </motion.div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

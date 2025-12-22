@@ -1,38 +1,34 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { HiOutlineArrowDown } from 'react-icons/hi'
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { HiOutlineArrowDown } from "react-icons/hi";
 
 const Hero = () => {
-  const roles = [
-    'Product Manager & App Leader',
-    'Solution Architect (Big Data Focus)',
-    'Full Stack Developer'
-  ]
+  const roles = ["Product Manager", "Full Stack Developer"];
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-tokyo-night-purple/20 via-transparent to-tokyo-night-cyan/20" />
-      
+
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -64,9 +60,10 @@ const Hero = () => {
           variants={itemVariants}
           className="text-lg md:text-xl text-tokyo-night-fg-alt max-w-3xl mx-auto mb-10 leading-relaxed"
         >
-          Từ việc viết những dòng code đầu tiên đến kiến trúc hệ thống xử lý hàng tỷ bản ghi. 
-          Tôi kết hợp tư duy sản phẩm và kỹ thuật chuyên sâu để biến các vấn đề phức tạp thành 
-          giải pháp đơn giản, hiệu quả và có khả năng mở rộng.
+          Từ việc viết những dòng code đầu tiên đến kiến trúc hệ thống xử lý
+          hàng tỷ bản ghi. Tôi kết hợp tư duy sản phẩm và kỹ thuật chuyên sâu để
+          biến các vấn đề phức tạp thành giải pháp đơn giản, hiệu quả và có khả
+          năng mở rộng.
         </motion.p>
 
         <motion.div
@@ -91,10 +88,7 @@ const Hero = () => {
           </motion.a>
         </motion.div>
 
-        <motion.div
-          variants={itemVariants}
-          className="mt-20"
-        >
+        <motion.div variants={itemVariants} className="mt-20">
           <motion.a
             href="#about"
             animate={{ y: [0, 10, 0] }}
@@ -106,45 +100,44 @@ const Hero = () => {
         </motion.div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
 const TypewriterText = ({ roles }) => {
-  const [currentRoleIndex, setCurrentRoleIndex] = useState(0)
-  const [displayText, setDisplayText] = useState('')
-  const [isDeleting, setIsDeleting] = useState(false)
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentRole = roles[currentRoleIndex]
-    let timeout
+    const currentRole = roles[currentRoleIndex];
+    let timeout;
 
     if (!isDeleting && displayText.length < currentRole.length) {
       timeout = setTimeout(() => {
-        setDisplayText(currentRole.slice(0, displayText.length + 1))
-      }, 100)
+        setDisplayText(currentRole.slice(0, displayText.length + 1));
+      }, 100);
     } else if (!isDeleting && displayText.length === currentRole.length) {
       timeout = setTimeout(() => {
-        setIsDeleting(true)
-      }, 2000)
+        setIsDeleting(true);
+      }, 2000);
     } else if (isDeleting && displayText.length > 0) {
       timeout = setTimeout(() => {
-        setDisplayText(currentRole.slice(0, displayText.length - 1))
-      }, 50)
+        setDisplayText(currentRole.slice(0, displayText.length - 1));
+      }, 50);
     } else if (isDeleting && displayText.length === 0) {
-      setIsDeleting(false)
-      setCurrentRoleIndex((prev) => (prev + 1) % roles.length)
+      setIsDeleting(false);
+      setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
     }
 
-    return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, currentRoleIndex, roles])
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentRoleIndex, roles]);
 
   return (
     <span className="text-gradient">
       {displayText}
       <span className="animate-pulse">|</span>
     </span>
-  )
-}
+  );
+};
 
-export default Hero
-
+export default Hero;
