@@ -1,0 +1,258 @@
+{
+  "categories": [
+    {
+      "id": "partitioning",
+      "title": "Partitioning",
+      "description": "Kỹ thuật chia bảng lớn thành nhiều partitions để tăng tốc query hàng nghìn lần",
+      "icon": "FaChartLine",
+      "color": "text-tokyo-night-purple",
+      "bgColor": "bg-tokyo-night-purple/10",
+      "borderColor": "border-tokyo-night-purple",
+      "tricks": [
+        {
+          "id": "01-partitioning",
+          "title": "Kỹ Thuật PARTITION và Tăng Tốc Hàng Nghìn Lần",
+          "file": "tricks/01-partitioning.md",
+          "tags": ["partition", "performance", "scalability"]
+        },
+        {
+          "id": "07-partition-existing-table",
+          "title": "Chia Partition Trên Bảng Đã Tồn Tại",
+          "file": "tricks/07-partition-existing-table.md",
+          "tags": ["partition", "migration", "maintenance"]
+        },
+        {
+          "id": "08-create-partition-table",
+          "title": "Hướng Dẫn Tạo Bảng Partition",
+          "file": "tricks/08-create-partition-table.md",
+          "tags": ["partition", "setup", "best-practices"]
+        },
+        {
+          "id": "09-partition-strategies",
+          "title": "Chiến Lược Partitioning Từ Cơ Bản Đến Phức Hợp",
+          "file": "tricks/09-partition-strategies.md",
+          "tags": ["partition", "strategy", "composite"]
+        },
+        {
+          "id": "10-partition-anatomy",
+          "title": "Giải Phẫu Database Partitioning",
+          "file": "tricks/10-partition-anatomy.md",
+          "tags": ["partition", "internal", "architecture"]
+        },
+        {
+          "id": "11-statistics-partition",
+          "title": "Lưu Ý Về Cập Nhật Statistics Trên Partition",
+          "file": "tricks/11-statistics-partition.md",
+          "tags": ["statistics", "partition", "maintenance"]
+        }
+      ]
+    },
+    {
+      "id": "query-optimization",
+      "title": "Query Optimization",
+      "description": "Tối ưu câu lệnh SQL với ít công sức nhất, sử dụng các công cụ và kỹ thuật hiện đại",
+      "icon": "FaRocket",
+      "color": "text-tokyo-night-blue",
+      "bgColor": "bg-tokyo-night-blue/10",
+      "borderColor": "border-tokyo-night-blue",
+      "tricks": [
+        {
+          "id": "02-query-optimization",
+          "title": "Tối Ưu SQL Với Ít Công Sức Nhất",
+          "file": "tricks/02-query-optimization.md",
+          "tags": ["query", "optimization", "performance"]
+        },
+        {
+          "id": "13-distinct-optimization",
+          "title": "Giải Mã DISTINCT - Khi Nào Dùng và Khi Nào Tránh",
+          "file": "tricks/13-distinct-optimization.md",
+          "tags": ["distinct", "optimization", "performance"]
+        },
+        {
+          "id": "14-parallel-processing",
+          "title": "Parallel Processing trong SQL Server",
+          "file": "tricks/14-parallel-processing.md",
+          "tags": ["parallel", "performance", "maxdop"]
+        }
+      ]
+    },
+    {
+      "id": "index-optimization",
+      "title": "Index Optimization",
+      "description": "Tối ưu index từ cơ bản đến nâng cao, clustering factor, và khi nào không nên dùng index",
+      "icon": "FaDatabase",
+      "color": "text-tokyo-night-cyan",
+      "bgColor": "bg-tokyo-night-cyan/10",
+      "borderColor": "border-tokyo-night-cyan",
+      "tricks": [
+        {
+          "id": "03-index-optimization",
+          "title": "Tối Ưu Index - Từ Cơ Bản Đến Nâng Cao",
+          "file": "tricks/03-index-optimization.md",
+          "tags": ["index", "performance", "optimization"]
+        },
+        {
+          "id": "12-foreign-key-index",
+          "title": "Foreign Key Index - Vấn Đề và Giải Pháp",
+          "file": "tricks/12-foreign-key-index.md",
+          "tags": ["foreign-key", "index", "performance"]
+        },
+        {
+          "id": "15-shrink-rebuild",
+          "title": "Shrink và Rebuild - Khi Nào Cần và Lưu Ý",
+          "file": "tricks/15-shrink-rebuild.md",
+          "tags": ["maintenance", "fragmentation", "rebuild"]
+        },
+        {
+          "id": "16-full-table-scan",
+          "title": "Các Table Nào Đang Bị Quét Full",
+          "file": "tricks/16-full-table-scan.md",
+          "tags": ["table-scan", "performance", "monitoring"]
+        },
+        {
+          "id": "17-index-billion-rows",
+          "title": "Tạo Index Cho Bảng Tỷ Dòng",
+          "file": "tricks/17-index-billion-rows.md",
+          "tags": ["index", "large-table", "maintenance"]
+        },
+        {
+          "id": "18-unusable-index",
+          "title": "Unusable Index - Phát Hiện và Xử Lý",
+          "file": "tricks/18-unusable-index.md",
+          "tags": ["index", "maintenance", "troubleshooting"]
+        },
+        {
+          "id": "19-clustering-factor",
+          "title": "Clustering Factor và Sự Ảnh Hưởng Đến Index",
+          "file": "tricks/19-clustering-factor.md",
+          "tags": ["clustering-factor", "index", "performance"]
+        },
+        {
+          "id": "20-query-hints",
+          "title": "Sử Dụng HINT Để Thay Đổi Chiến Lược Thực Thi",
+          "file": "tricks/20-query-hints.md",
+          "tags": ["hints", "query-optimization", "performance"]
+        },
+        {
+          "id": "21-range-scan",
+          "title": "So Sánh Chi Tiết Giữa Range Scan và Index Seek",
+          "file": "tricks/21-range-scan.md",
+          "tags": ["range-scan", "index-seek", "performance"]
+        },
+        {
+          "id": "22-index-monitoring",
+          "title": "Quy Trình Thực Hiện Giám Sát Index",
+          "file": "tricks/22-index-monitoring.md",
+          "tags": ["monitoring", "index", "maintenance"]
+        },
+        {
+          "id": "23-demo-performance-issue",
+          "title": "Demo Sự Cố Hiệu Năng - Case Study Thực Tế",
+          "file": "tricks/23-demo-performance-issue.md",
+          "tags": ["case-study", "performance", "troubleshooting"]
+        },
+        {
+          "id": "24-simulation-optimization",
+          "title": "Giả Lập Bài Toán Tối Ưu Database",
+          "file": "tricks/24-simulation-optimization.md",
+          "tags": ["simulation", "optimization", "case-study"]
+        },
+        {
+          "id": "25-index-types",
+          "title": "Các Loại Index Trong SQL Server",
+          "file": "tricks/25-index-types.md",
+          "tags": ["index-types", "clustered", "non-clustered"]
+        },
+        {
+          "id": "26-index-table",
+          "title": "Index Table - Khi Nào Cần và Cách Sử Dụng",
+          "file": "tricks/26-index-table.md",
+          "tags": ["index-table", "denormalization", "materialized-view"]
+        },
+        {
+          "id": "27-query-store-2011",
+          "title": "Query Store trên SQL Server 2011/2012",
+          "file": "tricks/27-query-store-2011.md",
+          "tags": ["query-store", "sql-server-2012", "monitoring"]
+        },
+        {
+          "id": "28-when-not-use-index",
+          "title": "Bài Toán Không Nên Dùng Index",
+          "file": "tricks/28-when-not-use-index.md",
+          "tags": ["index", "performance", "best-practices"]
+        },
+        {
+          "id": "29-partitioning-indexing",
+          "title": "Partitioning & Indexing - Best Practices",
+          "file": "tricks/29-partitioning-indexing.md",
+          "tags": ["partitioning", "indexing", "best-practices"]
+        },
+        {
+          "id": "30-execution-plan-guide",
+          "title": "Hướng Dẫn Đọc Chiến Lược Thực Thi",
+          "file": "tricks/30-execution-plan-guide.md",
+          "tags": ["execution-plan", "guide", "analysis"]
+        },
+        {
+          "id": "31-sql-execution-plan",
+          "title": "SQL Execution Plan - Chiến Lược Thực Thi",
+          "file": "tricks/31-sql-execution-plan.md",
+          "tags": ["execution-plan", "sql", "optimization"]
+        },
+        {
+          "id": "32-comprehensive-guide",
+          "title": "Hướng Dẫn Toàn Diện Tối Ưu Database",
+          "file": "tricks/32-comprehensive-guide.md",
+          "tags": ["comprehensive", "guide", "optimization"]
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "title": "Monitoring & Analysis",
+      "description": "Query Store, Execution Plan, và các công cụ giám sát hiệu năng database",
+      "icon": "FaCog",
+      "color": "text-tokyo-night-green",
+      "bgColor": "bg-tokyo-night-green/10",
+      "borderColor": "border-tokyo-night-green",
+      "tricks": [
+        {
+          "id": "04-query-store",
+          "title": "Query Store - Giám Sát và Tối Ưu Hiệu Năng",
+          "file": "tricks/04-query-store.md",
+          "tags": ["query-store", "monitoring", "performance"]
+        },
+        {
+          "id": "05-execution-plan",
+          "title": "Đọc và Phân Tích Execution Plan",
+          "file": "tricks/05-execution-plan.md",
+          "tags": ["execution-plan", "analysis", "optimization"]
+        }
+      ]
+    },
+    {
+      "id": "advanced",
+      "title": "Advanced Techniques",
+      "description": "Các kỹ thuật nâng cao như LOB performance, parallel processing, và các bài toán đặc biệt",
+      "icon": "FaLightbulb",
+      "color": "text-tokyo-night-yellow",
+      "bgColor": "bg-tokyo-night-yellow/10",
+      "borderColor": "border-tokyo-night-yellow",
+      "tricks": [
+        {
+          "id": "06-lob-performance",
+          "title": "Bài Toán Hiệu Năng Của LOB",
+          "file": "tricks/06-lob-performance.md",
+          "tags": ["lob", "performance", "large-objects"]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-01",
+    "totalTricks": 32,
+    "source": "SQL Server Optimization Tricks"
+  }
+}
+
