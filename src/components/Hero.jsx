@@ -3,7 +3,12 @@ import { motion } from "framer-motion";
 import { HiOutlineArrowDown } from "react-icons/hi";
 
 const Hero = () => {
-  const roles = ["Product Manager", "Full Stack Developer"];
+  const roles = [
+    "Product Manager",
+    "DevOps & SysAdmin",
+    "Database Engineer",
+    "Full Stack Developer",
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
