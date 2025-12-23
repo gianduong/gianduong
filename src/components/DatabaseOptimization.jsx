@@ -256,7 +256,7 @@ const DatabaseOptimization = () => {
                           )
                           .replace(
                             /^### (.+)$/gm,
-                            '<h3 class="text-lg font-semibold text-tokyo-night-purple mb-1 mt-2">$1</h3>'
+                            '<h3 class="text-lg font-semibold text-tokyo-night-purple mb-1 mt-4">$1</h3>'
                           )
                           .replace(
                             /^#### (.+)$/gm,
