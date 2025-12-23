@@ -9,6 +9,7 @@ import {
   FaChartLine,
   FaTwitter,
   FaPinterest,
+  FaHome,
 } from "react-icons/fa";
 
 const Projects = () => {
@@ -22,12 +23,13 @@ const Projects = () => {
       challenge:
         "Xây dựng ứng dụng Shopify để tracking Google Ads, GA4 với server-side tracking, GTM integration, xử lý conversion data chính xác.",
       solution:
-        "React JS frontend, Laravel backend, MongoDB. Multi-account Google Ads tracking, real-time analytics dashboards, ROI optimization, Enhanced Conversions (GDPR compliant).",
+        "Remix Vite (Shopify source), Node.js backend, MongoDB. Multi-account Google Ads tracking, real-time analytics dashboards, ROI optimization, Enhanced Conversions (GDPR compliant).",
       result:
         "Ứng dụng hỗ trợ tracking Google Ads hiệu quả với server-side tracking, tối ưu ROI/ROAS, lower CPA, hỗ trợ hàng nghìn merchants.",
       tech: [
         "Node.js",
         "Remix",
+        "Vite",
         "GraphQL",
         "Redis",
         "Kafka",
@@ -39,6 +41,25 @@ const Projects = () => {
       year: "2025 - now",
       link: "https://apps.shopify.com/trakpilot-google-ads-tracking",
       teamSize: "4-14",
+    },
+    {
+      title: "Style My Room - AI Room Decorator",
+      role: "Leader",
+      customer: "Shop.app users",
+      description:
+        "AI-powered room decoration app: Upload room photos, AI automatically decorates and suggests furniture from shop.app. Featured by Shopify as one of the innovative Shop Minis.",
+      challenge:
+        "Xây dựng ứng dụng mobile trên shop.app sử dụng AI để phân tích ảnh căn phòng, tự động decor và gợi ý các sản phẩm nội thất phù hợp từ shop.app.",
+      solution:
+        "React mobile app, Node.js backend, Gemini AI integration. Xử lý ảnh upload, AI image analysis, automatic room decoration suggestions, product recommendations từ shop.app catalog.",
+      result:
+        "Ứng dụng được Shopify vinh danh trong blog chính thức như một trong những Shop Minis tiên phong. Giúp users dễ dàng visualize căn phòng được decor, tăng engagement và conversion rate cho shop.app merchants.",
+      tech: ["Node.js", "React", "Gemini AI"],
+      color: "blue",
+      icon: <FaHome className="text-2xl" />,
+      year: "2025 - now",
+      link: "https://shop.app/mini/style-my-room-he5w",
+      teamSize: "7",
     },
     {
       title: "Omega Facebook Pixel Ad Report",

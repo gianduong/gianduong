@@ -64,7 +64,7 @@ const Certificates = () => {
       icon: FaCertificate,
       color: "purple",
       description:
-        "Khóa học về NGINX từ cơ bản đến nâng cao, xây dựng high-performance servers. Thời lượng: 4 giờ.",
+        "Khóa học về NGINX từ cơ bản đến nâng cao, xây dựng high-performance servers.",
       link: "https://drive.google.com/file/d/1Sv2kCYRpXQQL1j8hcPJu2SXU9KHFZDQ0/view?usp=drive_link",
     },
     {
