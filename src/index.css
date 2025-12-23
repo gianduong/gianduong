@@ -16,5 +16,29 @@
   .text-gradient {
     @apply bg-gradient-to-r from-tokyo-night-cyan to-tokyo-night-blue bg-clip-text text-transparent;
   }
+
+  /* Custom scrollbar for modal */
+  .modal-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb {
+    background: #24283b;
+    border-radius: 3px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #2f3549;
+  }
+
+  /* Firefox */
+  .modal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #24283b transparent;
+  }
 }
 

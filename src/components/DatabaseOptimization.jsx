@@ -7,10 +7,9 @@ import {
   FaRocket,
   FaChartLine,
   FaCog,
-  FaCheckCircle,
   FaLightbulb,
   FaBook,
-  FaTimes,
+  FaTimes
 } from "react-icons/fa";
 
 // Icon mapping
@@ -80,6 +79,23 @@ const DatabaseOptimization = () => {
     setSelectedTrick(null);
     setTrickContent(null);
   };
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEscKey = (event) => {
+      if (event.key === "Escape" && selectedTrick) {
+        closeTrickModal();
+      }
+    };
+
+    if (selectedTrick) {
+      document.addEventListener("keydown", handleEscKey);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [selectedTrick]);
 
   return (
     <div className="min-h-screen bg-tokyo-night-bg pt-20 pb-12">
@@ -223,7 +239,7 @@ const DatabaseOptimization = () => {
               </div>
 
               {/* Modal Content */}
-              <div className="p-6 overflow-y-auto flex-1">
+              <div className="p-6 overflow-y-auto flex-1 modal-scrollbar">
                 {trickContent ? (
                   <div className="prose prose-invert max-w-none">
                     <div
@@ -232,27 +248,27 @@ const DatabaseOptimization = () => {
                         __html: trickContent
                           .replace(
                             /^# (.+)$/gm,
-                            '<h1 class="text-2xl font-bold text-tokyo-night-cyan mb-4 mt-6">$1</h1>'
+                            '<h1 class="text-2xl font-bold text-tokyo-night-cyan mb-1.5 mt-2">$1</h1>'
                           )
                           .replace(
                             /^## (.+)$/gm,
-                            '<h2 class="text-xl font-bold text-tokyo-night-blue mb-3 mt-5">$1</h2>'
+                            '<h2 class="text-xl font-bold text-tokyo-night-blue mb-1.5 mt-2">$1</h2>'
                           )
                           .replace(
                             /^### (.+)$/gm,
-                            '<h3 class="text-lg font-semibold text-tokyo-night-purple mb-2 mt-4">$1</h3>'
+                            '<h3 class="text-lg font-semibold text-tokyo-night-purple mb-1 mt-2">$1</h3>'
                           )
                           .replace(
                             /^#### (.+)$/gm,
-                            '<h4 class="text-base font-semibold text-tokyo-night-green mb-2 mt-3">$1</h4>'
+                            '<h4 class="text-base font-semibold text-tokyo-night-green mb-1 mt-1.5">$1</h4>'
                           )
                           .replace(
                             /^```sql\n([\s\S]*?)```/gm,
-                            '<pre class="bg-tokyo-night-bg p-4 rounded-lg overflow-x-auto my-4 border border-tokyo-night-border"><code class="text-tokyo-night-cyan">$1</code></pre>'
+                            '<pre class="bg-tokyo-night-bg p-4 rounded-lg overflow-x-auto my-1.5 border border-tokyo-night-border"><code class="text-tokyo-night-cyan">$1</code></pre>'
                           )
                           .replace(
                             /^```([\s\S]*?)```/gm,
-                            '<pre class="bg-tokyo-night-bg p-4 rounded-lg overflow-x-auto my-4 border border-tokyo-night-border"><code>$1</code></pre>'
+                            '<pre class="bg-tokyo-night-bg p-4 rounded-lg overflow-x-auto my-1.5 border border-tokyo-night-border"><code>$1</code></pre>'
                           )
                           .replace(
                             /`([^`]+)`/g,
@@ -260,28 +276,28 @@ const DatabaseOptimization = () => {
                           )
                           .replace(
                             /^\*\* (.+)$/gm,
-                            '<li class="ml-4 mb-2"><strong>$1</strong></li>'
+                            '<li class="ml-4 mb-0.5"><strong>$1</strong></li>'
                           )
                           .replace(
                             /^\- (.+)$/gm,
-                            '<li class="ml-4 mb-2">$1</li>'
+                            '<li class="ml-4 mb-0.5">$1</li>'
                           )
                           .replace(
                             /^✅ (.+)$/gm,
-                            '<div class="flex items-start gap-2 mb-2"><span class="text-tokyo-night-green">✅</span><span>$1</span></div>'
+                            '<div class="flex items-start gap-2 mb-1"><span class="text-tokyo-night-green">✅</span><span>$1</span></div>'
                           )
                           .replace(
                             /^❌ (.+)$/gm,
-                            '<div class="flex items-start gap-2 mb-2"><span class="text-tokyo-night-red">❌</span><span>$1</span></div>'
+                            '<div class="flex items-start gap-2 mb-1"><span class="text-tokyo-night-red">❌</span><span>$1</span></div>'
                           )
                           .replace(
                             /^⚠️ (.+)$/gm,
-                            '<div class="flex items-start gap-2 mb-2"><span class="text-tokyo-night-yellow">⚠️</span><span>$1</span></div>'
+                            '<div class="flex items-start gap-2 mb-1"><span class="text-tokyo-night-yellow">⚠️</span><span>$1</span></div>'
                           )
-                          .replace(/\n\n/g, '</p><p class="mb-4">')
+                          .replace(/\n\n/g, '</p><p class="mb-1.5">')
                           .replace(
                             /^(?!<[h|p|l|d|p|s|c|u|o])(.+)$/gm,
-                            '<p class="mb-4">$1</p>'
+                            '<p class="mb-1.5">$1</p>'
                           ),
                       }}
                     />

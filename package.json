@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "serve -s dist -l 3003"
+    "start": "serve -s dist -l 0.0.0.0:3003"
   },
   "dependencies": {
     "framer-motion": "^10.16.16",
