@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Footer from "./Footer";
 import {
@@ -23,6 +23,7 @@ const iconMap = {
 
 const DatabaseOptimization = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [selectedTrick, setSelectedTrick] = useState(null);
   const [trickContent, setTrickContent] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -41,9 +42,17 @@ const DatabaseOptimization = () => {
     }
   };
 
-  const handleTrickClick = (trick) => {
+  const openTrickModal = (trick, updateUrl = true) => {
     setSelectedTrick(trick);
     loadTrickContent(trick.file);
+    // Update URL with trick ID hash only if triggered by user click
+    if (updateUrl) {
+      navigate(`/database-optimization#${trick.id}`, { replace: false });
+    }
+  };
+
+  const handleTrickClick = (trick) => {
+    openTrickModal(trick, true);
   };
 
   useEffect(() => {
@@ -62,7 +71,8 @@ const DatabaseOptimization = () => {
               const trick = category.tricks.find((t) => t.id === hash);
               if (trick) {
                 setTimeout(() => {
-                  handleTrickClick(trick);
+                  // Open modal from URL hash without updating URL again
+                  openTrickModal(trick, false);
                 }, 300);
                 break;
               }
@@ -78,6 +88,8 @@ const DatabaseOptimization = () => {
   const closeTrickModal = () => {
     setSelectedTrick(null);
     setTrickContent(null);
+    // Remove hash from URL when closing modal
+    navigate("/database-optimization", { replace: true });
   };
 
   // Handle ESC key to close modal

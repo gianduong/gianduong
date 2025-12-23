@@ -17,28 +17,33 @@
     @apply bg-gradient-to-r from-tokyo-night-cyan to-tokyo-night-blue bg-clip-text text-transparent;
   }
 
-  /* Custom scrollbar for modal */
+  /* Custom scrollbar for modal - always visible */
+  .modal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #24283b #1a1b27;
+    overflow-y: scroll !important;
+  }
+
   .modal-scrollbar::-webkit-scrollbar {
     width: 6px;
+    -webkit-appearance: none;
+    display: block;
   }
 
   .modal-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
+    background: #1a1b27;
+    border-radius: 3px;
   }
 
   .modal-scrollbar::-webkit-scrollbar-thumb {
     background: #24283b;
     border-radius: 3px;
+    -webkit-appearance: none;
+    min-height: 20px;
   }
 
   .modal-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #2f3549;
-  }
-
-  /* Firefox */
-  .modal-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: #24283b transparent;
   }
 }
 
