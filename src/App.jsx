@@ -4,6 +4,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./components/Home";
 import DatabaseOptimization from "./components/DatabaseOptimization";
 import SecurityNews from "./components/SecurityNews";
+import Games from "./components/Games";
 import Cat from "./components/Cat";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             element={<DatabaseOptimization />}
           />
           <Route path="/security-news" element={<SecurityNews />} />
+          <Route path="/games" element={<Games />} />
         </Routes>
         <Cat />
       </div>
