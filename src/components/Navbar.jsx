@@ -69,6 +69,14 @@ const Navbar = () => {
             >
               Tin Bảo Mật
             </Link>
+            <Link
+              to="/games"
+              className={`hover:text-tokyo-night-cyan transition-colors ${
+                isActive("/games") ? "text-tokyo-night-cyan" : ""
+              }`}
+            >
+              Giải Trí
+            </Link>
             {location.pathname === "/" ? (
               <>
                 <a
