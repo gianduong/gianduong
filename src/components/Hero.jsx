@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { HiOutlineArrowDown } from "react-icons/hi";
 
 const Hero = () => {
@@ -10,60 +10,171 @@ const Hero = () => {
     "Full Stack Developer",
   ];
 
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  
+  const springConfig = { damping: 25, stiffness: 150 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e;
+      setMousePosition({ x: clientX, y: clientY });
+      cursorX.set(clientX - 16);
+      cursorY.set(clientY - 16);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [cursorX, cursorY]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 },
+      scale: 1,
+      transition: { 
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      },
     },
   };
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-tokyo-night-purple/20 via-transparent to-tokyo-night-cyan/20" />
+      {/* Animated Particles Background */}
+      <ParticlesBackground />
+      
+      {/* Gradient Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute w-96 h-96 rounded-full bg-tokyo-night-purple/10 blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ top: "10%", left: "10%" }}
+        />
+        <motion.div
+          className="absolute w-96 h-96 rounded-full bg-tokyo-night-cyan/10 blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ bottom: "10%", right: "10%" }}
+        />
+        <motion.div
+          className="absolute w-72 h-72 rounded-full bg-tokyo-night-blue/5 blur-3xl"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -100, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          style={{ top: "50%", right: "20%" }}
+        />
+      </div>
+
+      {/* Custom Cursor Glow */}
+      <motion.div
+        className="fixed w-8 h-8 rounded-full bg-tokyo-night-cyan/50 blur-xl pointer-events-none z-50 mix-blend-screen"
+        style={{
+          left: cursorXSpring,
+          top: cursorYSpring,
+        }}
+      />
 
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-6 text-center z-10"
+        className="container mx-auto px-6 text-center z-10 relative"
       >
+        {/* Floating Badge */}
+        <motion.div
+          variants={itemVariants}
+          className="inline-block mb-6"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+            className="px-6 py-2 rounded-full bg-tokyo-night-cyan/10 border border-tokyo-night-cyan/30 backdrop-blur-sm"
+          >
+            <span className="text-tokyo-night-cyan font-semibold">✨ Available for opportunities</span>
+          </motion.div>
+        </motion.div>
+
         <motion.h1
           variants={itemVariants}
-          className="text-6xl md:text-7xl font-bold mb-6"
+          className="text-6xl md:text-8xl font-bold mb-6 relative"
         >
-          Hi, I'm <span className="text-gradient">Jun</span> 👋
+          Hi, I'm{" "}
+          <motion.span 
+            className="inline-block relative"
+            whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+          >
+            <span className="text-gradient-animated bg-gradient-to-r from-tokyo-night-cyan via-tokyo-night-blue to-tokyo-night-purple bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+              Jun
+            </span>
+            <motion.span
+              className="absolute -top-4 -right-8 text-4xl"
+              animate={{ rotate: [0, 20, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              👋
+            </motion.span>
+          </motion.span>
         </motion.h1>
 
         <motion.div
           variants={itemVariants}
-          className="text-2xl md:text-3xl font-semibold mb-4 h-16 flex items-center justify-center"
+          className="text-2xl md:text-4xl font-semibold mb-6 h-20 flex items-center justify-center"
         >
           <TypewriterText roles={roles} />
         </motion.div>
 
         <motion.p
           variants={itemVariants}
-          className="text-xl md:text-2xl text-tokyo-night-fg-alt mb-6 italic"
+          className="text-base md:text-lg text-tokyo-night-fg-alt mb-6 italic relative"
         >
-          "Navigating the full spectrum of the Web Development Lifecycle."
+          <span className="relative inline-block">
+            <span className="absolute inset-0 bg-gradient-to-r from-tokyo-night-cyan/20 to-tokyo-night-purple/20 blur-lg"></span>
+            <span className="relative">"Navigating the full spectrum of the Web Development Lifecycle."</span>
+          </span>
         </motion.p>
 
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-tokyo-night-fg-alt max-w-3xl mx-auto mb-10 leading-relaxed"
+          className="text-lg md:text-xl text-tokyo-night-fg-alt max-w-3xl mx-auto mb-12 leading-relaxed"
         >
           Từ việc viết những dòng code đầu tiên đến kiến trúc hệ thống xử lý
           hàng tỷ bản ghi. Tôi kết hợp tư duy sản phẩm và kỹ thuật chuyên sâu để
@@ -77,17 +188,23 @@ const Hero = () => {
         >
           <motion.a
             href="#projects"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(125, 207, 255, 0.5)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-tokyo-night-cyan text-tokyo-night-bg rounded-lg font-semibold hover:bg-tokyo-night-blue transition-colors"
+            className="group px-8 py-4 bg-gradient-to-r from-tokyo-night-cyan to-tokyo-night-blue text-tokyo-night-bg rounded-lg font-semibold relative overflow-hidden"
           >
-            Xem Dự Án Của Tôi
+            <span className="relative z-10">Xem Dự Án Của Tôi</span>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-tokyo-night-blue to-tokyo-night-purple"
+              initial={{ x: "100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
           </motion.a>
           <motion.a
             href="#contact"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(125, 207, 255, 0.3)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 border-2 border-tokyo-night-cyan text-tokyo-night-cyan rounded-lg font-semibold hover:bg-tokyo-night-cyan/10 transition-colors"
+            className="px-8 py-4 border-2 border-tokyo-night-cyan text-tokyo-night-cyan rounded-lg font-semibold hover:bg-tokyo-night-cyan/10 transition-all backdrop-blur-sm"
           >
             Tải CV / Kết nối LinkedIn
           </motion.a>
@@ -96,15 +213,64 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="mt-20">
           <motion.a
             href="#about"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
+            animate={{ y: [0, 15, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             className="inline-block"
+            whileHover={{ scale: 1.2 }}
           >
-            <HiOutlineArrowDown className="text-4xl text-tokyo-night-fg-alt" />
+            <div className="relative">
+              <motion.div
+                className="absolute inset-0 bg-tokyo-night-cyan/30 rounded-full blur-xl"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0.2, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <HiOutlineArrowDown className="text-5xl text-tokyo-night-cyan relative" />
+            </div>
           </motion.a>
         </motion.div>
       </motion.div>
     </section>
+  );
+};
+
+// Particles Background Component
+const ParticlesBackground = () => {
+  const particles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    size: Math.random() * 4 + 2,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 20 + 10,
+    delay: Math.random() * 5,
+  }));
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          className="absolute rounded-full bg-tokyo-night-cyan/30"
+          style={{
+            width: particle.size,
+            height: particle.size,
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+          }}
+          animate={{
+            y: [0, -100, 0],
+            x: [0, Math.random() * 50 - 25, 0],
+            opacity: [0, 1, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: particle.duration,
+            repeat: Infinity,
+            delay: particle.delay,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
   );
 };
 
@@ -138,10 +304,23 @@ const TypewriterText = ({ roles }) => {
   }, [displayText, isDeleting, currentRoleIndex, roles]);
 
   return (
-    <span className="text-gradient">
-      {displayText}
-      <span className="animate-pulse">|</span>
-    </span>
+    <div className="relative inline-block">
+      <motion.span 
+        className="bg-gradient-to-r from-tokyo-night-cyan via-tokyo-night-blue to-tokyo-night-purple bg-clip-text text-transparent"
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+        style={{ backgroundSize: "200% auto" }}
+      >
+        {displayText}
+        <motion.span
+          animate={{ opacity: [1, 0, 1] }}
+          transition={{ duration: 0.8, repeat: Infinity }}
+          className="text-tokyo-night-cyan"
+        >
+          |
+        </motion.span>
+      </motion.span>
+    </div>
   );
 };
 

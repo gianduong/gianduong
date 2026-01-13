@@ -3,19 +3,30 @@ import {
   FaCertificate,
   FaGraduationCap,
   FaExternalLinkAlt,
+  FaGoogle,
 } from "react-icons/fa";
 
 const Certificates = () => {
   const certificates = [
     {
+      title: "Gemini Certified Educator",
+      organization: "Google",
+      date: "Tháng 1, 2026",
+      icon: FaGoogle,
+      color: "blue",
+      description:
+        "Chứng nhận Gemini Certified Educator thể hiện khả năng ứng dụng AI trong giáo dục và tối ưu hóa hiệu suất công việc.",
+      link: "https://drive.google.com/file/d/1jcchcZNgyRLRIr14gP-RGKDwHeqL-R2v/view?usp=sharing",
+    },
+    {
       title: "Wecommit 100X Hiệu năng",
       organization: "Wecommit",
-      date: "2025",
+      date: "Tháng 12, 2025",
       icon: FaGraduationCap,
       color: "cyan",
       description:
         "Hiểu sâu về Database, làm chủ tư duy tối ưu. Framework tối ưu đã được kiểm chứng qua hàng chục hệ thống lớn, cách phân tích tận gốc bản chất hoạt động của Database.",
-      link: "",
+      link: "https://drive.google.com/file/d/1cEQHHILUiozAatjkboTY4Rq_1I9kF1AJ/view?usp=sharing",
     },
     {
       title: "Node.js, Express & MongoDB Bootcamp",
@@ -30,7 +41,7 @@ const Certificates = () => {
     {
       title: "SSL Complete Guide",
       organization: "Udemy",
-      date: "2025",
+      date: "Tháng 12, 2025",
       icon: FaCertificate,
       color: "purple",
       description:

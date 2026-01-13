@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaGamepad, FaArrowLeft, FaRedo } from "react-icons/fa";
+import JavaGameDirect from "./JavaGameDirect";
 
 // --- Components ---
 
@@ -143,19 +144,305 @@ const SnakeGame = ({ onBack }) => {
     const ctx = canvasRef.current.getContext("2d");
     ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-    // Draw Food
-    ctx.fillStyle = "#f7768e"; // Tokyo Night Red
-    ctx.fillRect(food.x * GRID_SIZE, food.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
+    // Draw Grid Background with darker lines
+    ctx.strokeStyle = "rgba(125, 207, 255, 0.08)";
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= CANVAS_SIZE / GRID_SIZE; i++) {
+      ctx.beginPath();
+      ctx.moveTo(i * GRID_SIZE, 0);
+      ctx.lineTo(i * GRID_SIZE, CANVAS_SIZE);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(0, i * GRID_SIZE);
+      ctx.lineTo(CANVAS_SIZE, i * GRID_SIZE);
+      ctx.stroke();
+    }
 
-    // Draw Snake
-    ctx.fillStyle = "#9ece6a"; // Tokyo Night Green
-    snake.forEach((segment, index) => {
-        if (index === 0) ctx.fillStyle = "#7dcfff"; // Head color (Cyan)
-        else ctx.fillStyle = "#9ece6a";
-        ctx.fillRect(segment.x * GRID_SIZE, segment.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
-    });
+    // Draw Food with glow and pulse animation
+    const time = Date.now() / 200;
+    const pulse = Math.sin(time) * 0.15 + 0.85;
+    
+    // Food outer glow
+    const foodGlowGradient = ctx.createRadialGradient(
+      food.x * GRID_SIZE + GRID_SIZE / 2,
+      food.y * GRID_SIZE + GRID_SIZE / 2,
+      0,
+      food.x * GRID_SIZE + GRID_SIZE / 2,
+      food.y * GRID_SIZE + GRID_SIZE / 2,
+      GRID_SIZE * 0.8
+    );
+    foodGlowGradient.addColorStop(0, "rgba(247, 118, 142, 0.4)");
+    foodGlowGradient.addColorStop(1, "rgba(247, 118, 142, 0)");
+    
+    ctx.fillStyle = foodGlowGradient;
+    ctx.beginPath();
+    ctx.arc(
+      food.x * GRID_SIZE + GRID_SIZE / 2,
+      food.y * GRID_SIZE + GRID_SIZE / 2,
+      GRID_SIZE * 0.7 * pulse,
+      0,
+      Math.PI * 2
+    );
+    ctx.fill();
+    
+    // Food main body with 3D effect
+    const foodGradient = ctx.createRadialGradient(
+      food.x * GRID_SIZE + GRID_SIZE / 2 - 3,
+      food.y * GRID_SIZE + GRID_SIZE / 2 - 3,
+      2,
+      food.x * GRID_SIZE + GRID_SIZE / 2,
+      food.y * GRID_SIZE + GRID_SIZE / 2,
+      GRID_SIZE / 2
+    );
+    foodGradient.addColorStop(0, "#ff9db5");
+    foodGradient.addColorStop(0.5, "#f7768e");
+    foodGradient.addColorStop(1, "#d94371");
+    
+    ctx.fillStyle = foodGradient;
+    ctx.beginPath();
+    ctx.arc(
+      food.x * GRID_SIZE + GRID_SIZE / 2,
+      food.y * GRID_SIZE + GRID_SIZE / 2,
+      GRID_SIZE / 2 - 1,
+      0,
+      Math.PI * 2
+    );
+    ctx.fill();
+    
+    // Food highlight
+    ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+    ctx.beginPath();
+    ctx.arc(
+      food.x * GRID_SIZE + GRID_SIZE / 2.5,
+      food.y * GRID_SIZE + GRID_SIZE / 2.5,
+      GRID_SIZE / 5,
+      0,
+      Math.PI * 2
+    );
+    ctx.fill();
 
-  }, [snake, food]);
+    // Draw Snake Body First (from tail to neck)
+    for (let i = snake.length - 1; i > 0; i--) {
+      const segment = snake[i];
+      const centerX = segment.x * GRID_SIZE + GRID_SIZE / 2;
+      const centerY = segment.y * GRID_SIZE + GRID_SIZE / 2;
+      const radius = GRID_SIZE / 2 - 1;
+      
+      // Calculate fade for tail
+      const fadeRatio = i / snake.length;
+      const segmentRadius = radius * (0.7 + fadeRatio * 0.3);
+      
+      // Special tail rendering for last segment
+      if (i === snake.length - 1) {
+        // Calculate tail direction (opposite of next segment)
+        const nextSegment = snake[i - 1];
+        const tailDirX = segment.x - nextSegment.x;
+        const tailDirY = segment.y - nextSegment.y;
+        
+        let tailAngle = 0;
+        if (tailDirX === 1) tailAngle = 0; // Right
+        else if (tailDirX === -1) tailAngle = Math.PI; // Left
+        else if (tailDirY === 1) tailAngle = Math.PI / 2; // Down
+        else if (tailDirY === -1) tailAngle = -Math.PI / 2; // Up
+        
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(tailAngle);
+        
+        // Tail shadow
+        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        ctx.beginPath();
+        ctx.ellipse(1, 2, segmentRadius * 1.2, segmentRadius * 0.8, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Tail gradient
+        const tailGradient = ctx.createRadialGradient(
+          -segmentRadius / 3,
+          -segmentRadius / 3,
+          segmentRadius / 4,
+          0,
+          0,
+          segmentRadius
+        );
+        
+        const lightGreen = `rgba(158, 206, 106, 0.95)`;
+        const midGreen = `rgba(134, 180, 92, 0.95)`;
+        const darkGreen = `rgba(110, 154, 78, 0.9)`;
+        
+        tailGradient.addColorStop(0, lightGreen);
+        tailGradient.addColorStop(0.5, midGreen);
+        tailGradient.addColorStop(1, darkGreen);
+        
+        ctx.fillStyle = tailGradient;
+        
+        // Draw teardrop/pointed tail shape
+        ctx.beginPath();
+        ctx.moveTo(segmentRadius * 1.5, 0); // Tip point
+        ctx.quadraticCurveTo(segmentRadius / 2, -segmentRadius, -segmentRadius / 2, -segmentRadius * 0.7);
+        ctx.quadraticCurveTo(-segmentRadius, 0, -segmentRadius / 2, segmentRadius * 0.7);
+        ctx.quadraticCurveTo(segmentRadius / 2, segmentRadius, segmentRadius * 1.5, 0);
+        ctx.closePath();
+        ctx.fill();
+        
+        // Tail highlight
+        ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.beginPath();
+        ctx.ellipse(-segmentRadius / 4, -segmentRadius / 4, segmentRadius / 3, segmentRadius / 4, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.restore();
+        continue;
+      }
+      
+      // Body shadow
+      ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+      ctx.beginPath();
+      ctx.arc(centerX + 1, centerY + 2, segmentRadius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Body 3D gradient (top-lit sphere effect)
+      const bodyGradient = ctx.createRadialGradient(
+        centerX - segmentRadius / 3,
+        centerY - segmentRadius / 3,
+        segmentRadius / 4,
+        centerX,
+        centerY,
+        segmentRadius
+      );
+      
+      // Green snake colors with variation
+      const lightGreen = `rgba(158, 206, 106, ${0.9 + fadeRatio * 0.1})`;
+      const midGreen = `rgba(134, 180, 92, ${0.9 + fadeRatio * 0.1})`;
+      const darkGreen = `rgba(110, 154, 78, ${0.8 + fadeRatio * 0.2})`;
+      
+      bodyGradient.addColorStop(0, lightGreen);
+      bodyGradient.addColorStop(0.5, midGreen);
+      bodyGradient.addColorStop(1, darkGreen);
+      
+      ctx.fillStyle = bodyGradient;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, segmentRadius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Scale pattern on body
+      if (i % 2 === 0) {
+        ctx.fillStyle = "rgba(110, 154, 78, 0.3)";
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, segmentRadius * 0.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Highlight on top
+      ctx.fillStyle = "rgba(255, 255, 255, 0.15)";
+      ctx.beginPath();
+      ctx.arc(centerX - segmentRadius / 3, centerY - segmentRadius / 3, segmentRadius / 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Draw Snake Head (triangular/diamond shape)
+    if (snake.length > 0) {
+      const head = snake[0];
+      const centerX = head.x * GRID_SIZE + GRID_SIZE / 2;
+      const centerY = head.y * GRID_SIZE + GRID_SIZE / 2;
+      const headSize = GRID_SIZE * 0.6;
+      
+      // Determine head orientation
+      let angle = 0;
+      if (direction.x === 1) angle = 0; // Right
+      else if (direction.x === -1) angle = Math.PI; // Left
+      else if (direction.y === 1) angle = Math.PI / 2; // Down
+      else if (direction.y === -1) angle = -Math.PI / 2; // Up
+      
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(angle);
+      
+      // Head shadow
+      ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+      ctx.beginPath();
+      ctx.moveTo(headSize, 0);
+      ctx.lineTo(-headSize / 2, -headSize / 1.5);
+      ctx.lineTo(-headSize / 2, headSize / 1.5);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Head main body with gradient
+      const headGradient = ctx.createLinearGradient(-headSize / 2, 0, headSize, 0);
+      headGradient.addColorStop(0, "#2ac3de");
+      headGradient.addColorStop(0.5, "#7dcfff");
+      headGradient.addColorStop(1, "#5fb4d4");
+      
+      ctx.fillStyle = headGradient;
+      ctx.beginPath();
+      ctx.moveTo(headSize, 0); // Nose point
+      ctx.lineTo(-headSize / 2, -headSize / 1.5); // Top left
+      ctx.lineTo(-headSize / 2, headSize / 1.5); // Bottom left
+      ctx.closePath();
+      ctx.fill();
+      
+      // Head outline for definition
+      ctx.strokeStyle = "rgba(42, 195, 222, 0.6)";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      
+      // Head highlight
+      ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+      ctx.beginPath();
+      ctx.moveTo(headSize * 0.3, 0);
+      ctx.lineTo(-headSize / 3, -headSize / 3);
+      ctx.lineTo(-headSize / 3, headSize / 3);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Draw Eyes (larger and more prominent)
+      const eyeOffsetX = headSize * 0.2;
+      const eyeOffsetY = headSize * 0.4;
+      const eyeRadius = 3.5;
+      
+      // Eye sockets (white)
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(eyeOffsetX, -eyeOffsetY, eyeRadius + 1, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(eyeOffsetX, eyeOffsetY, eyeRadius + 1, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Eye pupils (black)
+      ctx.fillStyle = "#1a1b26";
+      ctx.beginPath();
+      ctx.arc(eyeOffsetX, -eyeOffsetY, eyeRadius - 0.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(eyeOffsetX, eyeOffsetY, eyeRadius - 0.5, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Eye highlights (white dots)
+      ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+      ctx.beginPath();
+      ctx.arc(eyeOffsetX + 1, -eyeOffsetY - 1, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(eyeOffsetX + 1, eyeOffsetY - 1, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Tongue (when moving)
+      if (direction.x !== 0 || direction.y !== 0) {
+        const tongueFlicker = Math.sin(Date.now() / 100) * 2;
+        ctx.strokeStyle = "#f7768e";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(headSize, 0);
+        ctx.lineTo(headSize + 8, -3 + tongueFlicker);
+        ctx.moveTo(headSize, 0);
+        ctx.lineTo(headSize + 8, 3 - tongueFlicker);
+        ctx.stroke();
+      }
+      
+      ctx.restore();
+    }
+
+  }, [snake, food, direction]);
 
   return (
     <div className="flex flex-col items-center">
@@ -311,6 +598,12 @@ const Games = () => {
                 icon={<div className="font-mono font-bold">❌⭕</div>}
                 onClick={() => setActiveGame("tictactoe")}
               />
+              <GameCard
+                title="Game Java (J2ME)"
+                description="Chơi game Java như Ninja School ngay trên trình duyệt!"
+                icon={<div className="font-mono font-bold">📱</div>}
+                onClick={() => setActiveGame("javagame")}
+              />
             </div>
           </>
         ) : (
@@ -325,11 +618,12 @@ const Games = () => {
                 </div>
 
                 <h2 className="text-3xl font-bold text-tokyo-night-purple mb-8">
-                    {activeGame === 'snake' ? 'Rắn Săn Mồi' : 'Cờ Ca-rô'}
+                    {activeGame === 'snake' ? 'Rắn Săn Mồi' : activeGame === 'tictactoe' ? 'Cờ Ca-rô' : 'Game Java (J2ME)'}
                 </h2>
 
                 {activeGame === 'snake' && <SnakeGame onBack={() => setActiveGame(null)} />}
                 {activeGame === 'tictactoe' && <TicTacToe onBack={() => setActiveGame(null)} />}
+                {activeGame === 'javagame' && <JavaGameDirect onBack={() => setActiveGame(null)} />}
             </div>
         )}
       </motion.div>
