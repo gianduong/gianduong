@@ -1,6 +1,7 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { HiOutlineArrowDown } from "react-icons/hi";
+import Prism from "./Prism";
 
 const Hero = () => {
   const roles = [
@@ -56,52 +57,17 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Animated Particles Background */}
-      <ParticlesBackground />
-      
-      {/* Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute w-96 h-96 rounded-full bg-tokyo-night-purple/10 blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{ top: "10%", left: "10%" }}
-        />
-        <motion.div
-          className="absolute w-96 h-96 rounded-full bg-tokyo-night-cyan/10 blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{ bottom: "10%", right: "10%" }}
-        />
-        <motion.div
-          className="absolute w-72 h-72 rounded-full bg-tokyo-night-blue/5 blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -100, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{ top: "50%", right: "20%" }}
+      <div style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}>
+        <Prism
+          animationType="rotate"
+          timeScale={0.5}
+          height={3.5}
+          baseWidth={5.5}
+          scale={3.6}
+          hueShift={0}
+          colorFrequency={1}
+          noise={0}
+          glow={1}
         />
       </div>
 
@@ -230,47 +196,6 @@ const Hero = () => {
         </motion.div>
       </motion.div>
     </section>
-  );
-};
-
-// Particles Background Component
-const ParticlesBackground = () => {
-  const particles = Array.from({ length: 30 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 4 + 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * 5,
-  }));
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <motion.div
-          key={particle.id}
-          className="absolute rounded-full bg-tokyo-night-cyan/30"
-          style={{
-            width: particle.size,
-            height: particle.size,
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-          }}
-          animate={{
-            y: [0, -100, 0],
-            x: [0, Math.random() * 50 - 25, 0],
-            opacity: [0, 1, 0],
-            scale: [0, 1, 0],
-          }}
-          transition={{
-            duration: particle.duration,
-            repeat: Infinity,
-            delay: particle.delay,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-    </div>
   );
 };
 
