@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
+const SECTIONS = ["hero", "about", "experience", "tech", "certificates", "projects", "blog", "contact"];
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const location = useLocation();
 
   useEffect(() => {
@@ -13,6 +16,29 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Scroll spy - highlight active section
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+    );
+
+    SECTIONS.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   const isActive = (path) => {
     if (path === "/" && location.pathname === "/") return true;
@@ -81,37 +107,37 @@ const Navbar = () => {
               <>
                 <a
                   href="#about"
-                  className="hover:text-tokyo-night-cyan transition-colors"
+                  className={`hover:text-tokyo-night-cyan transition-colors ${activeSection === "about" ? "text-tokyo-night-cyan" : ""}`}
                 >
                   Về Tôi
                 </a>
                 <a
                   href="#experience"
-                  className="hover:text-tokyo-night-cyan transition-colors"
+                  className={`hover:text-tokyo-night-cyan transition-colors ${activeSection === "experience" ? "text-tokyo-night-cyan" : ""}`}
                 >
                   Kinh Nghiệm
                 </a>
                 <a
                   href="#tech"
-                  className="hover:text-tokyo-night-cyan transition-colors"
+                  className={`hover:text-tokyo-night-cyan transition-colors ${activeSection === "tech" ? "text-tokyo-night-cyan" : ""}`}
                 >
                   Kỹ Năng
                 </a>
                 <a
                   href="#projects"
-                  className="hover:text-tokyo-night-cyan transition-colors"
+                  className={`hover:text-tokyo-night-cyan transition-colors ${activeSection === "projects" ? "text-tokyo-night-cyan" : ""}`}
                 >
                   Dự Án
                 </a>
                 <a
                   href="#blog"
-                  className="hover:text-tokyo-night-cyan transition-colors"
+                  className={`hover:text-tokyo-night-cyan transition-colors ${activeSection === "blog" ? "text-tokyo-night-cyan" : ""}`}
                 >
                   Blog
                 </a>
                 <a
                   href="#contact"
-                  className="hover:text-tokyo-night-cyan transition-colors"
+                  className={`hover:text-tokyo-night-cyan transition-colors ${activeSection === "contact" ? "text-tokyo-night-cyan" : ""}`}
                 >
                   Liên Hệ
                 </a>

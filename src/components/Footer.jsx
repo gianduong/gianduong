@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <footer
       id="contact"
-      className="py-12 px-6 bg-tokyo-night-bg-alt/50 border-t border-tokyo-night-purple/30"
+      className="py-12 px-6 bg-tokyo-night-bg-alt/50 border-t border-tokyo-night-purple/30 scrolly-section"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">

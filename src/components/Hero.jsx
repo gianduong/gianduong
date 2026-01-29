@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { HiOutlineArrowDown } from "react-icons/hi";
 

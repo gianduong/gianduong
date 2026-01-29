@@ -73,7 +73,7 @@ const TechStack = () => {
   };
 
   return (
-    <section id="tech" className="py-20 px-6">
+    <section id="tech" className="py-12 md:py-20 px-6 scrolly-section">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

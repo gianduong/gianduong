@@ -316,7 +316,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 px-4 sm:px-6 bg-tokyo-night-bg-alt/30"
+      className="py-12 md:py-20 px-4 sm:px-6 bg-tokyo-night-bg-alt/30 scrolly-section"
     >
       <div className="container mx-auto max-w-7xl">
         <motion.div

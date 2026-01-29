@@ -10,6 +10,11 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* Scrollytelling - smooth section transitions */
+  .scrolly-section {
+    scroll-margin-top: 80px;
+  }
 }
 
 @layer utilities {

@@ -59,7 +59,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="py-20 px-6 bg-tokyo-night-bg-alt/50">
+    <section id="experience" className="py-12 md:py-20 px-6 bg-tokyo-night-bg-alt/50 scrolly-section">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
