@@ -214,15 +214,15 @@ const TypewriterText = ({ roles }) => {
     if (!isDeleting && displayText.length < currentRole.length) {
       timeout = setTimeout(() => {
         setDisplayText(currentRole.slice(0, displayText.length + 1));
-      }, 100);
+      }, 75);
     } else if (!isDeleting && displayText.length === currentRole.length) {
       timeout = setTimeout(() => {
         setIsDeleting(true);
-      }, 2000);
+      }, 1200);
     } else if (isDeleting && displayText.length > 0) {
       timeout = setTimeout(() => {
         setDisplayText(currentRole.slice(0, displayText.length - 1));
-      }, 50);
+      }, 45);
     } else if (isDeleting && displayText.length === 0) {
       setIsDeleting(false);
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
