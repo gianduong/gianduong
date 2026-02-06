@@ -57,7 +57,10 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      <div style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}>
+      <div
+        className="prism-backdrop"
+        style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
+      >
         <Prism
           animationType="rotate"
           timeScale={0.5}
@@ -84,7 +87,7 @@ const Hero = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="container mx-auto px-6 text-center z-10 relative"
+        className="container mx-auto px-6 text-center z-10 relative hero-content-layer"
       >
         {/* Floating Badge */}
         <motion.div

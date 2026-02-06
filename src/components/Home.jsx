@@ -10,13 +10,13 @@ import Footer from "./Footer";
 import ScrollProgress from "./ScrollProgress";
 
 const ScrollytellingSection = ({ children, chapter, title }) => (
-  <div className="min-h-screen flex flex-col justify-center relative py-24 px-6">
+  <div className="min-h-screen flex flex-col justify-center relative py-24 px-6 scrolly-section-layer">
     {chapter && (
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-80px", amount: 0.2 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="absolute top-24 left-6 md:left-12 flex items-center gap-3"
       >
         <span className="text-6xl md:text-8xl font-bold text-tokyo-night-cyan/10">
@@ -35,26 +35,26 @@ const ScrollytellingSection = ({ children, chapter, title }) => (
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const progressScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <>
-      {/* Scroll progress bar - top */}
+      {/* Scroll progress bar - top (scaleX = compositor-only, mượt hơn width) */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-tokyo-night-border z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-tokyo-night-border z-50 scroll-ui-layer"
         style={{ originX: 0 }}
       >
         <motion.div
-          className="h-full bg-gradient-to-r from-tokyo-night-cyan via-tokyo-night-blue to-tokyo-night-purple"
-          style={{ width: progressWidth }}
+          className="h-full w-full bg-gradient-to-r from-tokyo-night-cyan via-tokyo-night-blue to-tokyo-night-purple"
+          style={{ scaleX: progressScaleX, transformOrigin: "left" }}
         />
       </motion.div>
 
-      {/* Section navigation - left side */}
-      <ScrollProgress />
+      {/* Section navigation - left side (dùng chung scrollYProgress, ít listener hơn) */}
+      <ScrollProgress scrollYProgress={scrollYProgress} />
 
       {/* Hero - Chapter 0 */}
-      <section id="hero" className="min-h-screen">
+      <section id="hero" className="min-h-screen scrolly-section">
         <Hero />
       </section>
 
@@ -89,7 +89,7 @@ const Home = () => {
       </ScrollytellingSection>
 
       {/* Contact - Chapter 7 */}
-      <section id="contact">
+      <section id="contact" className="scrolly-section">
         <Footer />
       </section>
     </>

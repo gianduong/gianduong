@@ -19,6 +19,16 @@ const Certificates = () => {
       link: "https://drive.google.com/file/d/1jcchcZNgyRLRIr14gP-RGKDwHeqL-R2v/view?usp=sharing",
     },
     {
+      title: "Mastering Advanced AI Applications in Business",
+      organization: "Redpola",
+      date: "Tháng 12, 2025",
+      icon: FaCertificate,
+      color: "blue",
+      description:
+        "Ứng dụng AI kinh doanh nâng cao để làm chủ công nghệ AI thế hệ mới",
+      link: "https://drive.google.com/file/d/11Ug8QAHUtgMwl6esOUHHf3lgJTKYNOGj/view?usp=sharing",
+    },
+    {
       title: "Wecommit 100X Hiệu năng",
       organization: "Wecommit",
       date: "Tháng 12, 2025",

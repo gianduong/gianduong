@@ -1,5 +1,23 @@
+/* Tách lớp vẽ: Prism không gây repaint cho nội dung phía trên */
+.prism-backdrop {
+  contain: paint;
+  isolation: isolate;
+  transform: translateZ(0);
+  pointer-events: none;
+}
+
 .prism-container {
   position: relative;
   width: 100%;
   height: 100%;
+  contain: paint;
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+/* Nội dung Hero trên lớp riêng, tránh bị kéo theo repaint của canvas */
+.hero-content-layer {
+  contain: layout style;
+  transform: translateZ(0);
+  will-change: transform;
 }

@@ -330,6 +330,10 @@ const Prism = ({
       program.uniforms.uUseBaseWobble.value = 1;
     }
 
+    const TARGET_FPS = 30;
+    const throttleMs = animationType === 'rotate' ? 1000 / TARGET_FPS : 0;
+    let lastRenderTime = 0;
+
     const render = t => {
       const time = (t - t0) * 0.001;
       program.uniforms.iTime.value = time;
@@ -375,7 +379,11 @@ const Prism = ({
         if (TS < 1e-6) continueRAF = false;
       }
 
-      renderer.render({ scene: mesh });
+      const shouldDraw = throttleMs <= 0 || t - lastRenderTime >= throttleMs;
+      if (shouldDraw) {
+        lastRenderTime = t;
+        renderer.render({ scene: mesh });
+      }
       if (continueRAF) {
         raf = requestAnimationFrame(render);
       } else {

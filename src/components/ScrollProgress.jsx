@@ -11,8 +11,9 @@ const SECTIONS = [
   { id: "contact", label: "Liên hệ" },
 ];
 
-const ScrollProgress = () => {
-  const { scrollYProgress } = useScroll();
+const ScrollProgress = ({ scrollYProgress: scrollYProgressProp }) => {
+  const fallback = useScroll();
+  const scrollYProgress = scrollYProgressProp ?? fallback.scrollYProgress;
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -22,13 +23,12 @@ const ScrollProgress = () => {
   };
 
   return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center">
-      {/* Vertical progress track */}
+    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center scroll-ui-layer">
+      {/* Vertical progress track - scaleY = compositor-only */}
       <div className="relative w-1 h-32 bg-tokyo-night-border/50 rounded-full overflow-hidden">
         <motion.div
-          className="absolute left-0 top-0 w-full bg-gradient-to-b from-tokyo-night-cyan to-tokyo-night-purple rounded-full"
+          className="absolute left-0 top-0 w-full h-full bg-gradient-to-b from-tokyo-night-cyan to-tokyo-night-purple rounded-full"
           style={{
-            height: "100%",
             scaleY: scrollYProgress,
             transformOrigin: "top",
           }}
