@@ -214,7 +214,7 @@ const TypewriterText = ({ roles }) => {
     if (!isDeleting && displayText.length < currentRole.length) {
       timeout = setTimeout(() => {
         setDisplayText(currentRole.slice(0, displayText.length + 1));
-      }, 75);
+      }, 55);
     } else if (!isDeleting && displayText.length === currentRole.length) {
       timeout = setTimeout(() => {
         setIsDeleting(true);
